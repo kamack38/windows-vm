@@ -1,4 +1,4 @@
-# Windows VM
+# Windows 10 VM
 
 This repo contains a script that automatically creates a Windows 10 Virtual
 Machine under Arch Linux. It's main purpose is to interop with
