@@ -9,3 +9,6 @@ qemu-img create -f qcow2 /var/lib/libvirt/images/win10.qcow2 60G
 
 virsh define image.xml
 virsh start RDPWindows
+
+# Launch VM GUI
+virt-manager --connect qemu:///system --show-domain-console RDPWindows & && disown
