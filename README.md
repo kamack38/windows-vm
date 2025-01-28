@@ -19,7 +19,7 @@ If you want to setup a Windows VM by yourself follow
 ## Requirements
 
 ```bash
-sudo pacman -S --needed virt-manager qemu-guest-agent dialog freerdp iproute2 libnotify gnu-netcat cdrtools
+sudo pacman -S --needed virt-manager qemu-guest-agent dialog freerdp iproute2 libnotify openbsd-netcat cdrtools
 ```
 
 To install the `virtio-win` driver you can use an AUR helper of your choice:
