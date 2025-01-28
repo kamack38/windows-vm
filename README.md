@@ -19,16 +19,17 @@ If you want to setup a Windows VM by yourself follow
 ## Requirements
 
 ```bash
-sudo pacman -S --needed virt-manager qemu-guest-agent dialog freerdp iproute2 libnotify gnu-netcat
+sudo pacman -S --needed virt-manager qemu-guest-agent dialog freerdp iproute2 libnotify gnu-netcat cdrtools
 ```
 
-To install `virtio-win` driver you can use an AUR helper of your choice:
+To install the `virtio-win` driver you can use an AUR helper of your choice:
 
 ```bash
 paru -S virtio-win
 ```
 
-The driver will be installed to `/var/lib/libvirt/images/virtio-win.iso`.
+The driver will be installed to `/var/lib/libvirt/images/virtio-win.iso`. This
+driver is required for disks to be correctly recognised.
 
 The script in this repo assumes that you have previously downloaded a
 [Windows 10 ISO](https://www.microsoft.com/en-us/software-download/windows10ISO)
@@ -37,6 +38,10 @@ and placed it in `/var/lib/libvirt/images/win10.iso`.
 ## Usage
 
 The following command will run the script that will setup the VM.
+
+> [!NOTE]
+> By default the image is 60GB if you want a bigger image change it inside the
+> `qemu.sh` script.
 
 ```bash
 ./qemu.sh
@@ -49,6 +54,11 @@ to manually select the drive to boot (it's the first CD-ROM drive).
 > [!NOTE]
 > This script doesn't enable RDP, so after the setup is completed you'll have to
 > enable it manually in the settings.
+
+Administrator account with the following is created with this install:
+
+- Username: Admin
+- Password: 1234
 
 ## Useful links
 
