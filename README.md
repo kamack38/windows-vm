@@ -15,6 +15,7 @@ If you want to setup a Windows VM by yourself follow
 - Guest tools installation
 - Bloatware removal
 - Dark mode
+- Enable RDP
 
 ## Requirements
 
@@ -65,4 +66,4 @@ Administrator account with the following is created with this install:
 - [Windows ISO](https://www.microsoft.com/en-us/software-download/windows10ISO)
 - [Answer file generator](https://schneegans.de/windows/unattend-generator/)
 - [General unattend file documenatation](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-10)
-- [Unattend file components documenatation](http://technet.microsoft.com/en-us/library/ff699038.aspx)
+- [Unattend file components documenatation](https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/components-b-unattend)

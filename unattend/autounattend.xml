@@ -4,7 +4,7 @@
 
   <!--
     For documentation on components:
-    http://technet.microsoft.com/en-us/library/ff699038.aspx
+    https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/components-b-unattend
 
     For general unattended documentation:
     https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-10
@@ -143,10 +143,18 @@
         </RunSynchronousCommand>
       </RunSynchronous>
     </component>
-  </settings>
 
-  <settings pass="auditSystem"></settings>
-  <settings pass="auditUser"></settings>
+    <!--
+      Enable RDP
+    -->
+    <component name="Microsoft-Windows-TerminalServices-RDP-WinStationExtensions" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <UserAuthentication>1</UserAuthentication> <!-- Enable NLA -->
+      <SecurityLayer>2</SecurityLayer> <!-- Use Negotiate (SSL/TLS) -->
+    </component>
+    <component name="Microsoft-Windows-TerminalServices-LocalSessionManager" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <fDenyTSConnections>false</fDenyTSConnections> <!-- Enable RDP -->
+    </component>
+  </settings>
 
   <settings pass="oobeSystem">
     <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
@@ -585,6 +593,14 @@
 
       ; Disable "Do you want your PC to be discoverable" prompt after each host system reboot
       [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff]
+
+      ; Enable RDP connections
+      [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server]
+      "fDenyTSConnections"=dword:00000000
+
+      ; Enable NLA (Network Level Authentication) to add some security
+      [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp]
+      "UserAuthentication"=dword:00000001
     </File>
 
     <File path="C:\Windows\Setup\Scripts\Specialize.ps1" transformation="Text">
@@ -697,6 +713,9 @@
       };
       {
       reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowTaskViewButton /t REG_DWORD /d 0 /f;
+      };
+      {
+      reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Feeds" /v ShellFeedsTaskbarViewMode /t REG_DWORD /d 2 /f;
       };
       {
       $params = @{
