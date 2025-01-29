@@ -32,9 +32,10 @@ paru -S virtio-win
 The driver will be installed to `/var/lib/libvirt/images/virtio-win.iso`. This
 driver is required for disks to be correctly recognised.
 
-The script in this repo assumes that you have previously downloaded a
-[Windows 10 ISO](https://www.microsoft.com/en-us/software-download/windows10ISO)
-and placed it in `/var/lib/libvirt/images/win10.iso`.
+> [!NOTE]
+> The script in this repo assumes that you have previously downloaded a
+> [Windows 10 ISO](https://www.microsoft.com/en-us/software-download/windows10ISO)
+> and placed it in `/var/lib/libvirt/images/win10.iso`.
 
 > [!WARNING]
 > By default the VM image will pin the 12th, 13th, 14th and 15th threads, so
@@ -60,10 +61,11 @@ continue setup. If you don't do that, the VM will boot into UEFI firmware and
 you'll have to manually select the drive to boot (it's the first CD-ROM drive).
 
 > [!NOTE]
-> This script may not enable RDP. In this case you'll have to manually enable it
-> in the Windows settings (Settings->System->Remote Desktop).
+> This script may not automatically enable RDP. In this case you'll have to
+> manually enable it in the Windows settings (Settings->System->Remote Desktop).
 
-Administrator account with the following is created with this install:
+Administrator account with the following credentials is created with this
+install:
 
 - Username: Admin
 - Password: 1234
